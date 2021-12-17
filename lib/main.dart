@@ -1,8 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -51,22 +48,23 @@ class _WebViewExampleState extends State<WebViewExample> {
     if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
-  void _loadHtmlFromAssets() async {
-    String fileText = await rootBundle.loadString('assets/index.html');
-    controller.loadUrl(Uri.dataFromString(fileText,
-            mimeType: 'text/html', encoding: Encoding.getByName('utf-8'))
-        .toString());
-  }
+  // void _loadHtmlFromAssets() async {
+  //   String fileText = await rootBundle.loadString('assets/index.html');
+  //   controller.loadUrl(Uri.dataFromString(fileText,
+  //           mimeType: 'text/html', encoding: Encoding.getByName('utf-8'))
+  //       .toString());
+  // }
 
   Widget _buildBody() {
     if (isWeb) {
       return WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController webViewController) async {
-          webViewController.clearCache();
-          controller = webViewController;
-          _loadHtmlFromAssets();
-        },
+        initialUrl: 'https://giggleforest.com',
+        // javascriptMode: JavascriptMode.unrestricted,
+        // onWebViewCreated: (WebViewController webViewController) async {
+        //   webViewController.clearCache();
+        //   controller = webViewController;
+        //   // _loadHtmlFromAssets();
+        // },
         javascriptChannels: <JavascriptChannel>{
           JavascriptChannel(
               name: 'AppMsgChannel',
