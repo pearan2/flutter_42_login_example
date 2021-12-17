@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset="utf-8"> 
+		<title>Real Time</title> 
+		<script>
+			function social_42_login_handler() {
+				AppMsgChannel.postMessage('this is from web');
+			}
+		</script>
+		<style>
+			body {
+				padding:0px;
+				margin: 0px;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+			.center {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.buttonContainer {
+				width: 300px;
+				height: 400px;
+				background-color: aqua;
+			}
+			.socialLoginButton {
+				width: 200px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body> 
+		<div class='center'>
+			<div class='buttonContainer center'>
+				<button class='socialLoginButton' onclick="social_42_login_handler()">42 로그인</button>
+			</div>
+		</div>	
+	</body>
+</html>
