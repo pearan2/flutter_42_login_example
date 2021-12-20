@@ -79,8 +79,6 @@ class _LoginPageState extends State<LoginPage> {
           onWebViewCreated: (controller) {
             _controller = controller;
             _controller.clearCache();
-            final cookieManager = CookieManager();
-            cookieManager.clearCookies();
           },
           onProgress: (val) {
             setState(() => {isLoading = true});

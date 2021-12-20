@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/custom_widget/Fail.dart';
@@ -38,14 +38,13 @@ class _ProfileState extends State<Profile> {
     final url = Uri.parse('https://api.intra.42.fr/oauth/token');
     final response = await http.post(url, body: {
       'grant_type': 'authorization_code',
-      'client_id':
-          'be0e26aec4f61edf31bed70e3d6c20fe0939c238dcf9a3085cabae7d027124ae',
-      'client_secret':
-          '35e2e9467d31e594a72e6e7db88384481ba6b1bb03c79fb65fe596495a693c32',
+      'client_id': dotenv.env['client_id'],
+      'client_secret': dotenv.env['client_secret'],
       'code': widget.code,
-      'redirect_uri': 'https://giggleforest.com:4588/loginReturn/login_42.html',
+      'redirect_uri': dotenv.env['redirect_uri'],
     });
     if (response.statusCode != 200) {
+      print(response.body);
       _goToFail();
     } else {
       final token = Token.fromMap(jsonDecode(response.body));
